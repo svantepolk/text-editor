@@ -41,11 +41,11 @@ void gb_init_with_text(struct GapBuffer* gb, int gapSize, char* text, int textLe
 void gb_fprint(struct GapBuffer* gb, FILE* stream) {
     int charc = gb_charc(gb);
     // print the part before the gap
-    fprintf(stream, "%*s", gb->gapStart, gb->buffer); 
+    fprintf(stream, "%.*s", gb->gapStart, gb->buffer); 
     charc -= gb->gapStart;
     // print the part after the gap
-    char* afterGap = gb->buffer + gb->gapStart + gb->gapSize - 1;
-    fprintf(stream, "%*s", charc, afterGap);
+    char* afterGap = gb->buffer + gb->gapStart + gb->gapSize;
+    fprintf(stream, "%.*s", charc, afterGap);
 }
 
 void gb_move_gap(struct GapBuffer* gb, int index) {
